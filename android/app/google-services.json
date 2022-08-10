@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "586974773447",
+    "project_id": "sampleecom-3d655",
+    "storage_bucket": "sampleecom-3d655.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586974773447:android:4b790752e0ab4c3cd3fee2",
+        "android_client_info": {
+          "package_name": "com.example.sampleecom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586974773447-3kcp9370pjsfpcs26gphmfg5t1vld531.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoSgI2yhks-1h5q_hhUB2CiTfyOTj_wsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586974773447-3kcp9370pjsfpcs26gphmfg5t1vld531.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
