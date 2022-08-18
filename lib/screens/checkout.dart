@@ -238,18 +238,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             .getUser.address![selectedBillingAddressIndex!]);
                       }
                       try {
-                        OrderService()
-                            .createOrder(currentOrder,
-                                userProvider.getUser.cart!, address)
-                            .then((v) {
-                          userProvider.emptyCart();
-                          userProvider.removeCoupon();
-                          tabsProvider.changeIndex(4);
-                          orderProvider.addOrder(order: v);
-                          Navigator.of(context).pushReplacementNamed(
-                              OrderPlaced.routeName,
-                              arguments: v.orderId);
-                        });
+                        // OrderService()
+                        //     .createOrder(currentOrder,
+                        //         userProvider.getUser.cart!, address)
+                        //     .then((v) {
+                        //   userProvider.emptyCart();
+                        //   userProvider.removeCoupon();
+                        //   tabsProvider.changeIndex(4);
+                        //   orderProvider.addOrder(order: v);
+                        //   Navigator.of(context).pushReplacementNamed(
+                        //       OrderPlaced.routeName,
+                        //       arguments: v.orderId);
+                        // });
                       } catch (e) {
                         setState(() {
                           isLoading = false;

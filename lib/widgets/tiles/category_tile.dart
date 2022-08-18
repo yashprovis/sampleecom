@@ -52,7 +52,7 @@ class _CategoryTileState extends State<CategoryTile> {
                     child: Row(
                       children: [
                         EcomText(
-                          widget.category.title,
+                          widget.category.name,
                           color: Colors.white,
                           weight: FontWeight.w300,
                           size: 34,
@@ -73,8 +73,8 @@ class _CategoryTileState extends State<CategoryTile> {
                           Navigator.of(context).pushNamed(
                               ProductListScreen.routeName,
                               arguments: {
-                                "categories": widget.category.category,
-                                "title": widget.category.title,
+                                "categories": [],
+                                "title": widget.category.name,
                                 "index": 0
                               });
                         },
@@ -115,15 +115,15 @@ class _CategoryTileState extends State<CategoryTile> {
                       radius: 20,
                     ),
                     title: EcomText(
-                        subcat.title
-                            .replaceAll(" for ${widget.category.title}", ''),
+                        subcat.name
+                            .replaceAll(" for ${widget.category.name}", ''),
                         size: 16),
                     trailing: GestureDetector(
                       onTap: () {
                         Navigator.of(context)
                             .pushNamed(ProductListScreen.routeName, arguments: {
-                          "categories": subcat.category,
-                          "title": subcat.title,
+                          "categories": [],
+                          "title": subcat.name,
                           "index": 1
                         });
                       },

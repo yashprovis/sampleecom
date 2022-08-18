@@ -39,7 +39,7 @@ class UserProvider with ChangeNotifier {
     } else {
       _user!.favourites.add(productId);
     }
-    UserService().alterFavService(productId: productId, isFav: isFav);
+    UserService().alterFavService(productId: productId);
     notifyListeners();
   }
 

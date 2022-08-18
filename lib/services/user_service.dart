@@ -1,21 +1,26 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sampleecom/constants.dart';
 import 'package:sampleecom/screens/tabs.dart';
+import 'package:http/http.dart' as http;
 import 'package:sampleecom/models/user_model.dart' as user;
 import '../helpers/methods.dart';
 
 class UserService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final CollectionReference _ref =
-      FirebaseFirestore.instance.collection("users");
+  // final CollectionReference _ref =
+  //     FirebaseFirestore.instance.collection("users");
 
   Future<user.User> getUserDetails() async {
     User currentUser = _auth.currentUser!;
 
-    DocumentSnapshot documentSnapshot = await _ref.doc(currentUser.uid).get();
-
-    return user.User.fromSnap(documentSnapshot);
+    http.Response response =
+        await http.get(Uri.parse("$baseUrl/user/${currentUser.uid}"));
+    print(response.body);
+    return user.User.fromSnap(jsonDecode(response.body)['data']);
   }
 
   Future loginUser(
@@ -61,7 +66,11 @@ class UserService {
           uid: credential.user!.uid,
           email: email,
           phone: phone);
-      await _ref.doc(credential.user!.uid).set(currentUser.toJson());
+      await http.post(
+          headers: headerApiMap,
+          body: jsonEncode(currentUser.toJson()),
+          Uri.parse("$baseUrl/createUser"));
+      //  await _ref.doc(credential.user!.uid).set(currentUser.toJson());
       Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -132,15 +141,29 @@ class UserService {
   }
 
   Future updateUserProfile(
-      {required String name,
-      required String phone,
-      required String image,
+      {String? name,
+      String? phone,
+      String? image,
       required BuildContext context}) async {
     try {
       FocusScope.of(context).unfocus();
-      await _ref
-          .doc(_auth.currentUser!.uid)
-          .update({"name": name, "phone": phone, "image": image});
+      Map body = {};
+      if (name != null) {
+        body["name"] = name;
+      }
+      if (phone != null) {
+        body["phone"] = phone;
+      }
+      if (image != null) {
+        body["image"] = image;
+      }
+      await http.post(
+          body: jsonEncode(body),
+          headers: headerApiMap,
+          Uri.parse("$baseUrl/updateUser/${_auth.currentUser!.uid}"));
+      // await _ref
+      //     .doc(_auth.currentUser!.uid)
+      //     .update({"name": name, "phone": phone, "image": image});
       HelperMethods.showSnack(
           context: context,
           message: 'Profile Updated Successfully.',
@@ -150,12 +173,11 @@ class UserService {
     }
   }
 
-  Future alterFavService(
-      {required String productId, required bool isFav}) async {
-    _ref.doc(_auth.currentUser!.uid).update({
-      "favourites": isFav
-          ? FieldValue.arrayRemove([productId])
-          : FieldValue.arrayUnion([productId])
-    });
+  Future alterFavService({required String productId}) async {
+    Map body = {"uid": _auth.currentUser!.uid, "productId": productId};
+    await http.post(
+        body: jsonEncode(body),
+        headers: headerApiMap,
+        Uri.parse("$baseUrl/alterFav"));
   }
 }

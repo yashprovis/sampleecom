@@ -1,36 +1,36 @@
 class Category {
-  String title;
+  String name;
   String image;
-  List category;
+  String slug;
   List<SubCategory> subcategory;
 
   Category(
-      {required this.category,
-      required this.title,
+      {required this.slug,
+      required this.name,
       required this.image,
       required this.subcategory});
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-      category: json["category"],
-      title: json["title"],
+      slug: json["slug"],
+      name: json["name"],
       image: json["image"],
       subcategory: List<SubCategory>.from(
-          json["sub_category"].map((x) => SubCategory.fromJson(x))));
+          json["subcategory"].map((x) => SubCategory.fromJson(x))));
 }
 
 class SubCategory {
-  String title;
+  String name;
   String image;
-  List category;
+  String slug;
 
   SubCategory({
-    required this.category,
-    required this.title,
+    required this.slug,
+    required this.name,
     required this.image,
   });
   factory SubCategory.fromJson(Map<String, dynamic> json) => SubCategory(
-        category: json["category"],
-        title: json["title"],
+        slug: json["slug"],
+        name: json["name"],
         image: json["image"],
       );
 }

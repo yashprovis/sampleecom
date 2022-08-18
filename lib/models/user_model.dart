@@ -7,8 +7,8 @@ class User {
   final String uid;
   final String phone;
   final String email;
-  final List<Cart>? cart;
-  final List<Address>? address;
+  final List? cart;
+  final List? address;
   final List favourites;
   final String image;
 
@@ -22,32 +22,32 @@ class User {
       required this.favourites,
       required this.phone});
 
-  static Future<User> fromSnap(DocumentSnapshot data) async {
-    Map<String, dynamic> json = data.data() as Map<String, dynamic>;
+  static Future<User> fromSnap(Map json) async {
+    //   Map<String, dynamic> json = data.data() as Map<String, dynamic>;
+    List cartList = [];
+    List addressList = [];
 
-    final cartData = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(data.id)
-        .collection("cart")
-        .get();
-    List<Cart> cartList = [];
-    for (int i = 0; i < cartData.size; i++) {
-      cartList.add(Cart.fromSnap(cartData.docs[i].data()));
-    }
+    // final cartData = await FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(data.id)
+    //     .collection("cart")
+    //     .get();
+    // for (int i = 0; i < cartData.size; i++) {
+    //   cartList.add(Cart.fromSnap(cartData.docs[i].data()));
+    // }
 
-    final addressData = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(data.id)
-        .collection("address")
-        .get();
-    List<Address> addressList = [];
-    for (int i = 0; i < addressData.size; i++) {
-      addressList.add(Address.fromSnap(addressData.docs[i].data()));
-    }
+    // final addressData = await FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(data.id)
+    //     .collection("address")
+    //     .get();
+    // for (int i = 0; i < addressData.size; i++) {
+    //   addressList.add(Address.fromSnap(addressData.docs[i].data()));
+    // }
 
     return User(
       name: json["name"],
-      uid: json["uid"],
+      uid: json["_id"],
       phone: json["phone"],
       email: json["email"],
       cart: cartList,
