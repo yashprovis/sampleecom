@@ -104,8 +104,7 @@ class UserProvider with ChangeNotifier {
         cartDetails["coupon_savings"] =
             cartDetails["total"]! * cartCoupon!.discount / 100;
       } else {
-        cartDetails["coupon_savings"] =
-            cartDetails["total"]! - cartCoupon!.discount / 100;
+        cartDetails["coupon_savings"] = cartCoupon!.discount;
       }
       cartDetails["total"] =
           cartDetails["total"]! - cartDetails["coupon_savings"]!;

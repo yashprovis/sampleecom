@@ -12,7 +12,7 @@ class Coupon {
 
   static Coupon fromSnap(Map<String, dynamic> json) {
     return Coupon(
-        id: json["id"],
+        id: json["_id"],
         discount: json["discount"],
         type: json["type"] == "percent" ? CouponType.percent : CouponType.value,
         status: json["status"]);

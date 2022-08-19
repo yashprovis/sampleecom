@@ -69,7 +69,7 @@ class UserService {
       await http.post(
           headers: headerApiMap,
           body: jsonEncode(currentUser.toJson()),
-          Uri.parse("$baseUrl/createUser"));
+          Uri.parse("$baseUrl/user"));
       //  await _ref.doc(credential.user!.uid).set(currentUser.toJson());
       Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
     } on FirebaseAuthException catch (e) {

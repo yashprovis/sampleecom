@@ -29,10 +29,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   }
 
   fetchProducts([bool? isPriceDesc]) {
-    ProductService()
-        .fetchProducts(
-            widget.args['categories'], widget.args['index'], isPriceDesc)
-        .then((value) {
+    ProductService().fetchProducts(widget.args['categories']).then((value) {
       products = value;
       setState(() {});
     });
@@ -194,20 +191,23 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               ],
                             ),
                           ),
-                    GridView.builder(
-                      scrollDirection: Axis.vertical,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisExtent: 250,
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 4,
-                          crossAxisSpacing: 4),
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      itemCount: products!.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return ProductTile(product: products![index]);
-                      },
-                    ),
+                    products!.isEmpty
+                        ? const SizedBox()
+                        : GridView.builder(
+                            scrollDirection: Axis.vertical,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisExtent: 250,
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 4,
+                                    crossAxisSpacing: 4),
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            itemCount: products!.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return ProductTile(product: products![index]);
+                            },
+                          ),
                   ])));
   }
 }

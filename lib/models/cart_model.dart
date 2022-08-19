@@ -6,12 +6,11 @@ class Cart {
   const Cart({required this.productId, required this.qty, required this.size});
 
   static Cart fromSnap(Map<String, dynamic> json) {
-    return Cart(
-        productId: json["product_id"], qty: json["qty"], size: json["size"]);
+    return Cart(productId: json["_id"], qty: json["qty"], size: json["size"]);
   }
 
   Map<String, dynamic> toJson() => {
-        "product_id": productId,
+        "productId": productId,
         "qty": qty,
         "size": size,
       };

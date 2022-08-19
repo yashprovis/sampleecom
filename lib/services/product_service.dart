@@ -1,30 +1,23 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sampleecom/models/product_model.dart';
+import 'package:http/http.dart' as http;
+
+import '../constants.dart';
 
 class ProductService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<List<Product>> fetchProducts(List categories, int selectedIndex,
-      [bool? isPriceDesc]) async {
+  Future<List<Product>> fetchProducts(List categories) async {
     List<Product> products = [];
-    QuerySnapshot data;
-    if (selectedIndex == 0) {
-      data = await _db
-          .collection('products')
-          .where("category", arrayContains: categories[selectedIndex])
-          .orderBy("price", descending: isPriceDesc ?? false)
-          .get();
-    } else {
-      data = await _db
-          .collection('products')
-          .where("category", arrayContains: categories[selectedIndex])
-          .where("gender", isEqualTo: categories[0])
-          .orderBy("price", descending: isPriceDesc ?? false)
-          .get();
-    }
-
-    for (var element in data.docs) {
-      products.add(Product.fromJson(element.data() as Map<String, dynamic>));
+    http.Response response = await http.post(
+        body: jsonEncode({"categoryList": categories}),
+        headers: headerApiMap,
+        Uri.parse("$baseUrl/productsByCategory"));
+    List data = jsonDecode(response.body)['data'];
+    for (var element in data) {
+      products.add(Product.fromJson(element));
     }
     return products;
   }
@@ -34,22 +27,23 @@ class ProductService {
     if (ids.isEmpty) {
       return [];
     }
-    final data =
-        await _db.collection('products').where("id", whereIn: ids).get();
-
-    for (var element in data.docs) {
-      products.add(Product.fromJson(element.data()));
+    http.Response response = await http.post(
+        body: jsonEncode({"idList": ids}),
+        headers: headerApiMap,
+        Uri.parse("$baseUrl/productsByIds"));
+    List data = jsonDecode(response.body)['data'];
+    for (var element in data) {
+      products.add(Product.fromJson(element));
     }
     return products;
   }
 
   Future<Product> fetchProduct(String id) async {
     Product product;
+    http.Response response = await http.get(
+        headers: headerApiMap, Uri.parse("$baseUrl/product/$id"));
 
-    final data =
-        await _db.collection('products').where("id", isEqualTo: id).get();
-
-    product = Product.fromJson(data.docs[0].data());
+    product = Product.fromJson(jsonDecode(response.body)['data']);
 
     return product;
   }

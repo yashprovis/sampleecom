@@ -73,9 +73,8 @@ class _CategoryTileState extends State<CategoryTile> {
                           Navigator.of(context).pushNamed(
                               ProductListScreen.routeName,
                               arguments: {
-                                "categories": [],
+                                "categories": [widget.category.slug],
                                 "title": widget.category.name,
-                                "index": 0
                               });
                         },
                         isLoading: false,
@@ -122,9 +121,8 @@ class _CategoryTileState extends State<CategoryTile> {
                       onTap: () {
                         Navigator.of(context)
                             .pushNamed(ProductListScreen.routeName, arguments: {
-                          "categories": [],
+                          "categories": [widget.category.slug, subcat.slug],
                           "title": subcat.name,
-                          "index": 1
                         });
                       },
                       child: const Icon(Icons.arrow_forward_ios_rounded,

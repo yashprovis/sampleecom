@@ -12,7 +12,7 @@ class CategoryService {
     List<Category> categories = [];
     // final data = await _db.collection('category').orderBy("id").get();
     http.Response response = await http.get(Uri.parse("$baseUrl/category"));
-    print(response.body);
+
     // return user.User.fromSnap(jsonDecode(response.body)['data']);
     List data = jsonDecode(response.body)['data'];
     for (var element in data) {

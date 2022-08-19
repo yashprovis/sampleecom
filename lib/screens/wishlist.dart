@@ -30,6 +30,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   init() async {
     UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
+    print(userProvider.getUser.favourites);
     ProductService()
         .fetchProductsFromId(userProvider.getUser.favourites)
         .then((value) => setState(() {

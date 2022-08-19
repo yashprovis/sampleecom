@@ -7,8 +7,8 @@ class User {
   final String uid;
   final String phone;
   final String email;
-  final List? cart;
-  final List? address;
+  final List<Cart>? cart;
+  final List<Address>? address;
   final List favourites;
   final String image;
 
@@ -24,14 +24,7 @@ class User {
 
   static Future<User> fromSnap(Map json) async {
     //   Map<String, dynamic> json = data.data() as Map<String, dynamic>;
-    List cartList = [];
-    List addressList = [];
 
-    // final cartData = await FirebaseFirestore.instance
-    //     .collection('users')
-    //     .doc(data.id)
-    //     .collection("cart")
-    //     .get();
     // for (int i = 0; i < cartData.size; i++) {
     //   cartList.add(Cart.fromSnap(cartData.docs[i].data()));
     // }
@@ -50,8 +43,9 @@ class User {
       uid: json["_id"],
       phone: json["phone"],
       email: json["email"],
-      cart: cartList,
-      address: addressList,
+      cart: List<Cart>.from(json["cart"].map((x) => Cart.fromSnap(x))),
+      address:
+          List<Address>.from(json["address"].map((x) => Address.fromSnap(x))),
       favourites: json["favourites"],
       image: json["image"],
     );
