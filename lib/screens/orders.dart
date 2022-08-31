@@ -28,7 +28,7 @@ class OrdersScreen extends StatelessWidget {
                         onTap: () => Navigator.of(context).pop(),
                         child: const Icon(Icons.arrow_back_ios_new_rounded)),
                     const SizedBox(width: 12),
-                    EcomText(
+                    const EcomText(
                       "Order History",
                       size: 18,
                     ),
@@ -39,15 +39,15 @@ class OrdersScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: orderProvider.getUserOrders.length,
                 reverse: true,
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 itemBuilder: (context, index) {
                   return Container(
                     decoration: BoxDecoration(
                         border: Border(
                             top: BorderSide(color: Colors.grey.shade300))),
                     // dense: true,
-                    margin: EdgeInsets.only(top: 10, left: 12, right: 12),
-                    padding: EdgeInsets.only(top: 10, bottom: 6),
+                    margin: const EdgeInsets.only(top: 10, left: 12, right: 12),
+                    padding: const EdgeInsets.only(top: 10, bottom: 6),
                     child: Card(
                       elevation: 2,
                       margin: EdgeInsets.zero,
@@ -57,7 +57,7 @@ class OrdersScreen extends StatelessWidget {
                               OrderDetail.routeName,
                               arguments:
                                   orderProvider.getUserOrders[index].orderId!),
-                          trailing: Icon(Icons.arrow_forward_ios_rounded),
+                          trailing: const Icon(Icons.arrow_forward_ios_rounded),
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

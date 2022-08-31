@@ -65,8 +65,8 @@ class _AddressSheetState extends State<AddressSheet> {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
       child: AnimatedContainer(
-          duration: Duration(milliseconds: 400),
-          padding: EdgeInsets.all(14),
+          duration: const Duration(milliseconds: 400),
+          padding: const EdgeInsets.all(14),
           height: height,
           decoration: const BoxDecoration(
               color: Colors.white,
@@ -76,7 +76,7 @@ class _AddressSheetState extends State<AddressSheet> {
           child: Form(
             key: addressFormKey,
             child: SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -93,10 +93,10 @@ class _AddressSheetState extends State<AddressSheet> {
                         ),
                         GestureDetector(
                             onTap: () => Navigator.of(context).pop(),
-                            child: Icon(Icons.close))
+                            child: const Icon(Icons.close))
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     EcomTextField(
                       controller: nameController,
                       hintText: "Name *".toUpperCase(),
@@ -158,7 +158,7 @@ class _AddressSheetState extends State<AddressSheet> {
                       isPassword: false,
                       node: stateNode,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Card(
                       elevation: 6,
                       child: EcomButton(

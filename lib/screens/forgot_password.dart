@@ -29,7 +29,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               width: double.infinity,
               decoration: const BoxDecoration(
                   color: primaryColor,
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
               padding: const EdgeInsets.only(bottom: 20, top: 30),
@@ -56,7 +56,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       top: 20,
                       child: GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back_ios_new_rounded,
                           size: 24,
                           color: Colors.white,
@@ -75,8 +75,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 key: forgotPassFormKey,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 12),
                       child: EcomText(
                           "Please provide your account email address to receive an email to reset your password.",
                           weight: FontWeight.w300,
@@ -106,7 +106,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                   .whenComplete(() => setState(() {
                                         isLoading = false;
                                       }));
-                            } catch (e) {}
+                            } catch (e) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                            }
                           }
                         }),
                   ],

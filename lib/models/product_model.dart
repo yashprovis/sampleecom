@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Product {
   String id;
   num mrp;
@@ -36,23 +34,4 @@ class Product {
         size: json["size"],
         stock: json["stock"],
       );
-
-  static List<Product> productFromSnapshot(QuerySnapshot querySnapshot) {
-    return querySnapshot.docs.map((snapshot) {
-      final Map<String, dynamic> json = snapshot.data() as Map<String, dynamic>;
-
-      return Product(
-        category: json["category"],
-        title: json["title"],
-        image: json["image"],
-        imageList: json["image_list"],
-        id: json["id"],
-        desc: json["desc"],
-        mrp: json["mrp"],
-        price: json["price"],
-        size: json["size"],
-        stock: json["stock"],
-      );
-    }).toList();
-  }
 }

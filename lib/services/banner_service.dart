@@ -1,15 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import '../constants.dart';
 
 import '../models/banner_model.dart';
 
 class BannerService {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-
   Future<List<BannerModel>> fetchBanner() async {
     List<BannerModel> banners = [];
-    final data = await _db.collection('banners').orderBy("id").get();
-    for (var element in data.docs) {
-      banners.add(BannerModel.fromJson(element.data()));
+    http.Response response = await http.get(Uri.parse("$baseUrl/banner"));
+    print(response.body);
+    // return user.User.fromSnap(jsonDecode(response.body)['data']);
+    List data = jsonDecode(response.body)['data'];
+    for (var element in data) {
+      banners.add(BannerModel.fromJson(element));
     }
     return banners;
   }

@@ -1,7 +1,7 @@
 class BannerModel {
   String title;
   String image;
-  int id;
+  String id;
   List category;
 
   BannerModel({
@@ -12,8 +12,8 @@ class BannerModel {
   });
 
   factory BannerModel.fromJson(Map<String, dynamic> json) => BannerModel(
-        id: json["id"],
-        title: json["title"],
+        id: json["_id"],
+        title: json["name"],
         image: json["image"],
         category: json["category"],
       );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sampleecom/helpers/methods.dart';
+
 import 'package:sampleecom/models/cart_model.dart';
 import 'package:sampleecom/models/product_model.dart';
 import 'package:sampleecom/provider/user_provider.dart';
@@ -262,7 +262,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             color: Colors.black,
                           ),
                         ),
-                        EcomText(
+                        const EcomText(
                           "*Inclusive of all taxes",
                           size: 12,
                           weight: FontWeight.bold,
@@ -308,8 +308,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     margin: const EdgeInsets.all(8),
                                     width: 44,
                                     alignment: Alignment.center,
-                                    child: EcomText(
-                                        product!.size[index].toString()),
                                     decoration: BoxDecoration(
                                       border:
                                           currentSize == product!.size[index]
@@ -317,7 +315,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                               : null,
                                       color: Colors.grey[200],
                                       borderRadius: BorderRadius.circular(50),
-                                    )),
+                                    ),
+                                    child: EcomText(
+                                        product!.size[index].toString())),
                               );
                             },
                           ),

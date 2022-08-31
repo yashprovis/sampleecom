@@ -15,7 +15,13 @@ class UserProvider with ChangeNotifier {
   User get getUser =>
       _user ??
       const User(
-          name: "", uid: "", image: "", email: "", favourites: [], phone: "");
+          name: "",
+          uid: "",
+          image: "",
+          email: "",
+          favourites: [],
+          phone: "",
+          isActive: false);
 
   Future<void> refreshUser() async {
     User user = await UserService().getUserDetails();
@@ -140,6 +146,44 @@ class UserProvider with ChangeNotifier {
 
   Future removeCoupon() async {
     cartCoupon = null;
+    notifyListeners();
+  }
+
+  Map filters = {};
+  Map get getFilters => filters;
+
+  bool searchFilters = false;
+  bool get getSearchFilters => searchFilters;
+
+  void setFilterSearch(bool value) {
+    searchFilters = value;
+    notifyListeners();
+  }
+
+  void addFilter([List? sizes, RangeValues? price]) {
+    if (sizes != null) {
+      filters['sizes'] = sizes;
+    }
+    if (price != null) {
+      filters['startPrice'] = price.start;
+      filters['endPrice'] = price.end;
+    }
+    notifyListeners();
+  }
+
+  void removeFilter({bool? removeSize, bool? removePrice}) {
+    if (removeSize != null) {
+      filters.remove("sizes");
+    }
+    if (removePrice != null) {
+      filters.remove('startPrice');
+      filters.remove('endPrice');
+    }
+    notifyListeners();
+  }
+
+  Future clearFilters() async {
+    filters = {};
     notifyListeners();
   }
 }

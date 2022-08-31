@@ -1,6 +1,7 @@
-import 'dart:convert';
+// ignore_for_file: use_build_context_synchronously
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sampleecom/constants.dart';
@@ -19,7 +20,6 @@ class UserService {
 
     http.Response response =
         await http.get(Uri.parse("$baseUrl/user/${currentUser.uid}"));
-    print(response.body);
     return user.User.fromSnap(jsonDecode(response.body)['data']);
   }
 
@@ -63,6 +63,7 @@ class UserService {
           favourites: [],
           image: "",
           name: name,
+          isActive: false,
           uid: credential.user!.uid,
           email: email,
           phone: phone);
@@ -168,7 +169,38 @@ class UserService {
           context: context,
           message: 'Profile Updated Successfully.',
           color: Colors.green);
-    } on FirebaseException catch (e) {
+    } catch (e) {
+      HelperMethods.showSnack(context: context, message: e.toString());
+    }
+  }
+
+  Future updateUserProfilePicture(
+      {File? image, required BuildContext context}) async {
+    try {
+      FocusScope.of(context).unfocus();
+      var request = http.MultipartRequest("POST",
+          Uri.parse("$baseUrl/updateUserPicture/${_auth.currentUser!.uid}"));
+      final fileString = _auth.currentUser!.uid +
+          image!.path.substring(image.path.lastIndexOf(".", image.path.length));
+      final httpImage = await http.MultipartFile.fromPath(
+          "userImage", image.path,
+          filename: fileString);
+
+      request.files.add(httpImage);
+      request.send().then((response) {});
+
+      // await http.post(
+      //     body: jsonEncode(body),
+      //     headers: headerApiMap,
+      //     Uri.parse("$baseUrl/updateUser/${_auth.currentUser!.uid}"));
+      // await _ref
+      //     .doc(_auth.currentUser!.uid)
+      //     .update({"name": name, "phone": phone, "image": image});
+      HelperMethods.showSnack(
+          context: context,
+          message: 'Profile Updated Successfully.',
+          color: Colors.green);
+    } catch (e) {
       HelperMethods.showSnack(context: context, message: e.toString());
     }
   }

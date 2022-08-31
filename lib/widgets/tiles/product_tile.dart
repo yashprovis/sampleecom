@@ -38,7 +38,7 @@ class ProductTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
                             alignment: Alignment.centerLeft,
                             height: 38,
                             child: EcomText(
@@ -52,7 +52,7 @@ class ProductTile extends StatelessWidget {
                               EcomText("₹${product.price}", size: 14),
                               Text(
                                 "₹${product.mrp}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.grey),
                               ),

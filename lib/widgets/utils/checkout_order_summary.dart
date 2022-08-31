@@ -17,9 +17,10 @@ class CheckoutOrderSummary extends StatelessWidget {
       child: Card(
         elevation: 2,
         child: ExpansionTile(
-          title: EcomText("Order Summary"),
+          title: const EcomText("Order Summary"),
           iconColor: Colors.black,
-          childrenPadding: EdgeInsets.only(bottom: 16, right: 16, left: 16),
+          childrenPadding:
+              const EdgeInsets.only(bottom: 16, right: 16, left: 16),
           children: [
             ListView.builder(
               itemCount: products.length,
@@ -28,7 +29,7 @@ class CheckoutOrderSummary extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                     dense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                     leading: SizedBox(
                         width: 60, child: Image.network(products[index].image)),
                     subtitle: Padding(

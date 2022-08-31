@@ -30,7 +30,7 @@ class _AddressScreenState extends State<AddressScreen> {
                       onTap: () => Navigator.of(context).pop(),
                       child: const Icon(Icons.arrow_back_ios_new_rounded)),
                   const SizedBox(width: 12),
-                  EcomText(
+                  const EcomText(
                     "Address",
                     size: 18,
                   ),

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sampleecom/models/product_model.dart';
-import 'package:sampleecom/provider/user_provider.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
 
 import '../../models/order_model.dart';
-import '../../provider/order_provider.dart';
 
 class OrderDetailSummary extends StatelessWidget {
   final Order order;

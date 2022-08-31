@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
 
@@ -18,6 +19,16 @@ class HelperMethods {
       ),
       backgroundColor: color ?? Colors.black,
     ));
+  }
+
+  static Future getImageFromCamera() async {
+    var image = await ImagePicker().pickImage(source: ImageSource.camera);
+    return image;
+  }
+
+  static Future getImageFromGallery() async {
+    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    return image;
   }
 }
 

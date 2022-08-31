@@ -72,7 +72,7 @@ class RouteGenerator {
         );
       case SearchScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => SearchScreen(),
+          builder: (context) => const SearchScreen(),
         );
       default:
         return errorRoute();

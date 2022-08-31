@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
-// const String firstNamePref = "FIRST_NAME";
-// const String lastNamePref = "LAST_NAME";
-// const String emailPref = "EMAIL";
-
-// const String streetAddressPref = "STREET_ADDRESS";
-// const String cityPref = "CITY";
-// const String countryPref = "COUNTRY";
-const String baseUrl = "http://192.168.2.102:5000/api";
+const String baseUrl = "http://192.168.2.103:5000/api";
+const String uploadUrl = "http://192.168.2.103:5000/uploads";
 
 const Map<String, String> headerApiMap = {
   "Content-Type": "application/json; charset=utf-8",

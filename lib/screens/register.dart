@@ -1,9 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sampleecom/constants.dart';
-import 'package:sampleecom/screens/home.dart';
 import 'package:sampleecom/screens/login.dart';
-import 'package:sampleecom/screens/tabs.dart';
 import 'package:sampleecom/services/user_service.dart';
 import 'package:sampleecom/widgets/ecom_button.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
@@ -45,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               width: double.infinity,
               decoration: const BoxDecoration(
                   color: primaryColor,
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30))),
               padding: const EdgeInsets.only(bottom: 20, top: 30),
@@ -70,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const Positioned(
                       right: 20,
                       top: 20,
-                      child: const EcomText(
+                      child: EcomText(
                         "SKIP",
                         size: 14,
                         color: Colors.white,

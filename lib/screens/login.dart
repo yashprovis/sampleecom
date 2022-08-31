@@ -130,7 +130,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   .whenComplete(() => setState(() {
                                         isLoading = false;
                                       }));
-                            } catch (e) {}
+                            } catch (e) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                            }
                           }
                         }),
                     Padding(

@@ -7,7 +7,6 @@ import 'package:sampleecom/provider/user_provider.dart';
 import 'package:sampleecom/screens/product_detail.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
 
-import '../../helpers/methods.dart';
 import '../../models/cart_model.dart';
 import '../ecom_button.dart';
 import '../sheets/size_sheet.dart';
@@ -44,7 +43,7 @@ class WishlistTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
                             alignment: Alignment.centerLeft,
                             height: 38,
                             child: EcomText(
@@ -58,7 +57,7 @@ class WishlistTile extends StatelessWidget {
                               EcomText("₹${product.price}", size: 14),
                               Text(
                                 "₹${product.mrp}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.grey),
                               ),
@@ -69,7 +68,7 @@ class WishlistTile extends StatelessWidget {
                   Container(
                     decoration: const BoxDecoration(
                         border: Border(top: BorderSide(width: .3))),
-                    margin: EdgeInsets.only(top: 8, left: 16, right: 16),
+                    margin: const EdgeInsets.only(top: 8, left: 16, right: 16),
                     padding: EdgeInsets.only(
                         top: userProvider.productExistInCart(id: product.id)
                             ? 10

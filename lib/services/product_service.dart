@@ -1,18 +1,23 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sampleecom/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../constants.dart';
 
 class ProductService {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-
-  Future<List<Product>> fetchProducts(List categories) async {
+  Future<List<Product>> fetchProducts(List categories,
+      [bool? priceDesc, Map? filters]) async {
     List<Product> products = [];
+    Map body = {"categoryList": categories};
+    if (priceDesc != null) {
+      body['priceDesc'] = priceDesc;
+    }
+    if (filters != null) {
+      body.addAll(filters);
+    }
     http.Response response = await http.post(
-        body: jsonEncode({"categoryList": categories}),
+        body: jsonEncode(body),
         headers: headerApiMap,
         Uri.parse("$baseUrl/productsByCategory"));
     List data = jsonDecode(response.body)['data'];
@@ -50,14 +55,13 @@ class ProductService {
 
   Future<List<Product>> fetchProductsFromSearch(String searchString) async {
     List<Product> products = [];
-    final data = await _db
-        .collection('products')
-        .where("title", isGreaterThanOrEqualTo: searchString)
-        .where("title", isLessThanOrEqualTo: "$searchString\uf7ff")
-        .get();
-
-    for (var element in data.docs) {
-      products.add(Product.fromJson(element.data()));
+    http.Response response = await http.post(
+        body: jsonEncode({"searchString": searchString}),
+        headers: headerApiMap,
+        Uri.parse("$baseUrl/searchProducts"));
+    List data = jsonDecode(response.body)['data'];
+    for (var element in data) {
+      products.add(Product.fromJson(element));
     }
     return products;
   }

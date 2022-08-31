@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sampleecom/constants.dart';
 import 'package:sampleecom/widgets/ecom_button.dart';
 import 'package:sampleecom/widgets/sheets/change_password_sheet.dart';
+import 'package:sampleecom/widgets/sheets/image_picker_sheet.dart';
 
 import '../provider/user_provider.dart';
 import '../widgets/ecom_text.dart';
@@ -58,7 +59,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           onTap: () => Navigator.of(context).pop(),
                           child: const Icon(Icons.arrow_back_ios_new_rounded)),
                       const SizedBox(width: 12),
-                      EcomText(
+                      const EcomText(
                         "Edit Profile",
                         size: 18,
                       ),
@@ -71,27 +72,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Form(
                         key: editProfileFormKey,
                         child: Column(children: [
-                          Container(
-                            height: 120,
-                            width: 120,
-                            margin: EdgeInsets.only(bottom: 40, top: 10),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(60),
-                                image: userProvider.getUser.image == ""
-                                    ? null
-                                    : DecorationImage(
-                                        image: NetworkImage(
-                                            userProvider.getUser.image))),
-                            child: userProvider.getUser.image == ""
-                                ? EcomText(
-                                    userProvider.getUser.name
-                                        .substring(0, 2)
-                                        .toUpperCase(),
-                                    color: Colors.white,
-                                    size: 26)
-                                : null,
+                          GestureDetector(
+                            onTap: () {
+                              imagePickerSheet(context);
+                            },
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              margin:
+                                  const EdgeInsets.only(bottom: 40, top: 10),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(60),
+                                  image: userProvider.getUser.image == ""
+                                      ? null
+                                      : DecorationImage(
+                                          image: NetworkImage(
+                                              userProvider.getUser.image))),
+                              child: userProvider.getUser.image == ""
+                                  ? EcomText(
+                                      userProvider.getUser.name
+                                          .substring(0, 2)
+                                          .toUpperCase(),
+                                      color: Colors.white,
+                                      size: 26)
+                                  : null,
+                            ),
                           ),
                           EcomTextField(
                             controller: nameController,

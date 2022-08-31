@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sampleecom/provider/order_provider.dart';
-import 'package:sampleecom/provider/user_provider.dart';
-import 'package:sampleecom/services/order_service.dart';
 import 'package:sampleecom/services/product_service.dart';
 import 'package:sampleecom/widgets/utils/order_detail_bill.dart';
 import 'package:sampleecom/widgets/utils/order_detail_summary.dart';
 
-import '../models/order_model.dart';
 import '../models/product_model.dart';
 import '../widgets/ecom_text.dart';
 
@@ -52,7 +49,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         onTap: () => Navigator.of(context).pop(),
                         child: const Icon(Icons.arrow_back_ios_new_rounded)),
                     const SizedBox(width: 12),
-                    EcomText(
+                    const EcomText(
                       "Order Detail",
                       size: 18,
                     ),

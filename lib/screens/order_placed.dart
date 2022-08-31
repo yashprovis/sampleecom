@@ -3,7 +3,6 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sampleecom/constants.dart';
 import 'package:sampleecom/screens/order_detail.dart';
-import 'package:sampleecom/screens/orders.dart';
 import 'package:sampleecom/widgets/ecom_button.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
 
@@ -27,18 +26,18 @@ class OrderPlaced extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: Padding(
-            padding: EdgeInsets.only(top: 50, right: 20),
+            padding: const EdgeInsets.only(top: 50, right: 20),
             child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).pop();
                 },
-                child: Icon(Icons.close, size: 36)),
+                child: const Icon(Icons.close, size: 36)),
           ),
         ),
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: EcomText(
                 "Order Placed Successfully!!",
                 size: 26,
@@ -62,7 +61,7 @@ class OrderPlaced extends StatelessWidget {
                   isLoading: false)),
         ),
         Padding(
-            padding: EdgeInsets.only(bottom: 80, left: 20, right: 20),
+            padding: const EdgeInsets.only(bottom: 80, left: 20, right: 20),
             child: Card(
                 elevation: 4,
                 child: EcomButton(

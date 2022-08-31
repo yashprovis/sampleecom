@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/methods.dart';
@@ -22,9 +20,10 @@ class CheckoutOrderDetails extends StatelessWidget {
         child: Card(
           elevation: 2,
           child: ExpansionTile(
-            title: EcomText("Order Details"),
+            title: const EcomText("Order Details"),
             iconColor: Colors.black,
-            childrenPadding: EdgeInsets.only(bottom: 16, right: 16, left: 16),
+            childrenPadding:
+                const EdgeInsets.only(bottom: 16, right: 16, left: 16),
             children: [
               CartOrderItem(
                   title: "Bag Total",

@@ -57,8 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Navigator.of(context)
                                           .pushNamed(SearchScreen.routeName);
                                     },
-                                    child:
-                                        Icon(CupertinoIcons.search, size: 32)),
+                                    child: const Icon(CupertinoIcons.search,
+                                        size: 32)),
                                 const SizedBox(width: 14),
                                 const CartHeaderButton()
                               ],

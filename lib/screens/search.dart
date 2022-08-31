@@ -1,7 +1,8 @@
-import 'package:firestore_search/firestore_search.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sampleecom/services/product_service.dart';
 import '../models/product_model.dart';
+import '../widgets/ecom_text_field.dart';
 import '../widgets/tiles/search_tile.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchController = TextEditingController();
 
-  List<Product> products = [];
+  List<Product>? products;
 
   fetchProducts(String searchString) async {
     products = await ProductService().fetchProductsFromSearch(searchString);
@@ -29,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Column(children: [
         Container(
             height: 120,
-            padding: EdgeInsets.only(top: 60, left: 10, right: 10),
+            padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
             child: Row(
               children: [
                 Padding(
@@ -38,86 +39,56 @@ class _SearchScreenState extends State<SearchScreen> {
                       onTap: () => Navigator.of(context).pop(),
                       child: const Icon(Icons.arrow_back_ios_new_rounded)),
                 ),
+                const SizedBox(width: 15),
                 SizedBox(
-                  width: size.width - 50,
+                  width: size.width - 65,
                   height: 60,
-                  // child: EcomTextField(
-                  //     onSubmit: () {
-                  //       fetchProducts(searchController.text);
-                  //     },
-                  //     suffixIcon: Padding(
-                  //       padding: const EdgeInsets.only(top: 14, right: 10),
-                  //       child: GestureDetector(
-                  //           onTap: () {
-                  //             fetchProducts(searchController.text);
-                  //           },
-                  //           child: Text(
-                  //             'Search',
-                  //             style: TextStyle(fontWeight: FontWeight.w500),
-                  //           )),
-                  //     ),
-                  //     controller: searchController,
-                  //     hintText: "Search products",
-                  //     isPassword: false),
-                  child: FirestoreSearchBar(
-                    tag: "tag",
-                    searchBackgroundColor: Colors.grey[200],
-                  ),
+                  child: EcomTextField(
+                      func: (v) {
+                        if (v != null && v.isNotEmpty) {
+                          fetchProducts(v);
+                        }
+                      },
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(top: 14, right: 10),
+                        child: GestureDetector(
+                            onTap: () {
+                              if (searchController.text.isNotEmpty) {
+                                fetchProducts(searchController.text);
+                              }
+                            },
+                            child: const Text(
+                              'Search',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            )),
+                      ),
+                      controller: searchController,
+                      hintText: "Search products",
+                      isPassword: false),
+                  // child: FirestoreSearchBar(
+                  //   tag: "tag",
+                  //   searchBackgroundColor: Colors.grey[200],
+                  // ),
                 )
               ],
             )),
         SizedBox(
-            height: size.height - 120,
-            // child: products.isEmpty
-            //     ? Center(child: Lottie.asset("assets/lottie/search_empty.json"))
-            //     : ListView.builder(
-            //         padding: EdgeInsets.symmetric(horizontal: 10),
-            //         itemCount: products.length,
-            //         itemBuilder: (context, index) {
-            //           return SearchTile(
-            //             product: products[index],
-            //           );
-            //         },
-            //       ),
-            child: FirestoreSearchResults.builder(
-              tag: 'tag',
-              firestoreCollectionName: 'products',
-              searchBy: 'title',
-              initialBody: const Center(
-                child: Text('Initial body'),
-              ),
-              dataListFromSnapshot: Product.productFromSnapshot,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final List<Product>? dataList = snapshot.data;
-                  if (dataList!.isEmpty) {
-                    return const Center(
-                      child: Text('No Results Returned'),
-                    );
-                  }
-                  return ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    itemCount: dataList.length,
-                    itemBuilder: (context, index) {
-                      return SearchTile(
-                        product: dataList[index],
-                      );
-                    },
-                  );
-                }
-
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (!snapshot.hasData) {
-                    return const Center(
-                      child: Text('No Results Returned'),
-                    );
-                  }
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            ))
+          height: size.height - 120,
+          child: products == null
+              ? const SizedBox()
+              : products!.isEmpty
+                  ? Center(
+                      child: Lottie.asset("assets/lottie/search_empty.json"))
+                  : ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      itemCount: products!.length,
+                      itemBuilder: (context, index) {
+                        return SearchTile(
+                          product: products![index],
+                        );
+                      },
+                    ),
+        )
       ]),
     );
   }

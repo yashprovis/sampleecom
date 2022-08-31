@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sampleecom/models/address_model.dart';
 import 'package:sampleecom/models/cart_model.dart';
 
@@ -11,11 +10,11 @@ class Order {
   final num subtotalAmount;
   final num savingsAmount;
   final num couponAmount;
-  final DateTime orderPlacedDate;
-  final DateTime orderUpdatedDate;
+  dynamic orderPlacedDate;
+  dynamic orderUpdatedDate;
   final String orderStatus;
 
-  const Order(
+  Order(
       {required this.cartItems,
       required this.orderedBy,
       required this.address,
@@ -23,45 +22,25 @@ class Order {
       required this.subtotalAmount,
       required this.savingsAmount,
       required this.couponAmount,
-      required this.orderPlacedDate,
-      required this.orderUpdatedDate,
+      this.orderPlacedDate,
+      this.orderUpdatedDate,
       required this.orderStatus,
       required this.orderId});
 
-  static Future<Order> fromSnap(DocumentSnapshot data) async {
-    Map<String, dynamic> json = data.data() as Map<String, dynamic>;
-
-    final cartData = await FirebaseFirestore.instance
-        .collection('orders')
-        .doc(data.id)
-        .collection("cart")
-        .get();
-    List<Cart> cartList = [];
-    for (int i = 0; i < cartData.size; i++) {
-      cartList.add(Cart.fromSnap(cartData.docs[i].data()));
-    }
-
-    final addressData = await FirebaseFirestore.instance
-        .collection('orders')
-        .doc(data.id)
-        .collection("address")
-        .get();
-    List<Address> addressList = [];
-    for (int i = 0; i < addressData.size; i++) {
-      addressList.add(Address.fromSnap(addressData.docs[i].data()));
-    }
-
+  static Order fromSnap(Map json) {
     return Order(
       orderedBy: json["orderedBy"],
-      cartItems: cartList,
-      address: addressList,
-      orderId: data.id,
+      cartItems:
+          List<Cart>.from(json["cartItems"].map((x) => Cart.fromSnap(x))),
+      address:
+          List<Address>.from(json["address"].map((x) => Address.fromSnap(x))),
+      orderId: json["_id"],
       totalAmount: json["totalAmount"],
       subtotalAmount: json["subtotalAmount"],
       savingsAmount: json["savingsAmount"],
       couponAmount: json["couponAmount"],
-      orderPlacedDate: json["orderPlacedDate"].toDate(),
-      orderUpdatedDate: json["orderUpdatedDate"].toDate(),
+      orderPlacedDate: DateTime.parse(json["orderPlacedDate"]),
+      orderUpdatedDate: DateTime.parse(json["orderUpdatedDate"]),
       orderStatus: json["orderStatus"],
     );
   }
@@ -75,5 +54,7 @@ class Order {
         "orderPlacedDate": orderPlacedDate,
         "orderUpdatedDate": orderUpdatedDate,
         "orderStatus": orderStatus,
+        "cartItems": cartItems,
+        "address": address
       };
 }

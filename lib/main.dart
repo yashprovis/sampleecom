@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:sampleecom/helpers/routes.dart';
@@ -12,7 +12,6 @@ import 'package:sampleecom/screens/splash.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await initialize();
 
   runApp(const MyApp());
 }

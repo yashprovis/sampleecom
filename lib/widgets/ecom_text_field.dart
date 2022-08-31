@@ -45,9 +45,9 @@ class _EcomTextFieldState extends State<EcomTextField> {
       children: [
         widget.headerText != null
             ? Padding(
-                padding: EdgeInsets.only(bottom: 12, left: 2),
+                padding: const EdgeInsets.only(bottom: 12, left: 2),
                 child: EcomText(widget.headerText!))
-            : SizedBox(),
+            : const SizedBox(),
         TextFormField(
           onEditingComplete: widget.onSubmit,
           controller: widget.controller,
@@ -62,6 +62,7 @@ class _EcomTextFieldState extends State<EcomTextField> {
             if (value.length < 8 && widget.isPassword) {
               return '*${widget.hintText.capitalize()}is too Short';
             }
+            return null;
           },
           onFieldSubmitted: (_) {
             if (widget.nextNode != null) {

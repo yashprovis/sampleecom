@@ -54,10 +54,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                         Navigator.of(context)
                                             .pushNamed(SearchScreen.routeName);
                                       },
-                                      child: Icon(CupertinoIcons.search,
+                                      child: const Icon(CupertinoIcons.search,
                                           size: 32)),
-                                  SizedBox(width: 14),
-                                  CartHeaderButton()
+                                  const SizedBox(width: 14),
+                                  const CartHeaderButton()
                                 ],
                               )
                             ],

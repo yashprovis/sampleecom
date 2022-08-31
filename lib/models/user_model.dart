@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sampleecom/models/address_model.dart';
 import 'package:sampleecom/models/cart_model.dart';
 
@@ -11,9 +10,10 @@ class User {
   final List<Address>? address;
   final List favourites;
   final String image;
-
+  final bool isActive;
   const User(
       {required this.name,
+      required this.isActive,
       required this.uid,
       required this.image,
       required this.email,
@@ -23,22 +23,8 @@ class User {
       required this.phone});
 
   static Future<User> fromSnap(Map json) async {
-    //   Map<String, dynamic> json = data.data() as Map<String, dynamic>;
-
-    // for (int i = 0; i < cartData.size; i++) {
-    //   cartList.add(Cart.fromSnap(cartData.docs[i].data()));
-    // }
-
-    // final addressData = await FirebaseFirestore.instance
-    //     .collection('users')
-    //     .doc(data.id)
-    //     .collection("address")
-    //     .get();
-    // for (int i = 0; i < addressData.size; i++) {
-    //   addressList.add(Address.fromSnap(addressData.docs[i].data()));
-    // }
-
     return User(
+      isActive: json["isActive"],
       name: json["name"],
       uid: json["_id"],
       phone: json["phone"],
@@ -53,6 +39,7 @@ class User {
 
   Map<String, dynamic> toJson() => {
         "name": name,
+        "isActive": isActive,
         "uid": uid,
         "phone": phone,
         "email": email,
