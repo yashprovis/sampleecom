@@ -37,6 +37,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   init() async {
     UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
+
     nameController.text = userProvider.getUser.name;
     emailController.text = userProvider.getUser.email;
     phoneController.text = userProvider.getUser.phone;

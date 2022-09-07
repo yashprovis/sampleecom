@@ -9,7 +9,7 @@ class BannerService {
   Future<List<BannerModel>> fetchBanner() async {
     List<BannerModel> banners = [];
     http.Response response = await http.get(Uri.parse("$baseUrl/banner"));
-    print(response.body);
+
     // return user.User.fromSnap(jsonDecode(response.body)['data']);
     List data = jsonDecode(response.body)['data'];
     for (var element in data) {

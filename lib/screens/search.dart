@@ -73,12 +73,16 @@ class _SearchScreenState extends State<SearchScreen> {
               ],
             )),
         SizedBox(
-          height: size.height - 120,
+          height: size.height - 120 - MediaQuery.of(context).viewInsets.bottom,
           child: products == null
               ? const SizedBox()
               : products!.isEmpty
                   ? Center(
-                      child: Lottie.asset("assets/lottie/search_empty.json"))
+                      child: Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 40, left: 40, right: 40),
+                      child: Lottie.asset("assets/lottie/search_empty.json"),
+                    ))
                   : ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       itemCount: products!.length,

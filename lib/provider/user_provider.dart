@@ -30,9 +30,9 @@ class UserProvider with ChangeNotifier {
   }
 
   Future updateUser(
-      {required String name,
-      required String phone,
-      required String image,
+      {required String? name,
+      required String? phone,
+      required String? image,
       required BuildContext context}) async {
     await UserService().updateUserProfile(
         name: name, phone: phone, image: image, context: context);

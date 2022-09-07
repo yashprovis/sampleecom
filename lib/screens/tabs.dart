@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sampleecom/constants.dart';
 import 'package:sampleecom/provider/order_provider.dart';
 import 'package:sampleecom/provider/tabs_provider.dart';
 import '../provider/user_provider.dart';
+import '../services/notification_service.dart';
 import 'cart.dart';
 import 'home.dart';
 import 'profile.dart';
@@ -19,6 +20,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   List<Widget> screens = [
     const HomeScreen(),
     const CategoryScreen(),
@@ -38,6 +40,7 @@ class _TabsScreenState extends State<TabsScreen> {
         Provider.of<UserProvider>(context, listen: false);
     OrderProvider orderProvider =
         Provider.of<OrderProvider>(context, listen: false);
+    NotificationService().saveDeviceToken(auth.currentUser!.uid);
     await userProvider.refreshUser();
     await orderProvider.fetchCurrentOrders();
   }

@@ -47,9 +47,9 @@ class _CouponSheetState extends State<CouponSheet> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const EcomText(
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: EcomText(
                     "Apply Coupon",
                     size: 18,
                     weight: FontWeight.w500,
@@ -106,7 +106,7 @@ class _CouponSheetState extends State<CouponSheet> {
                       )
                     : appliedCoupon!.id == ""
                         ? const Expanded(
-                            child: const Center(
+                            child: Center(
                               child: EcomText('Invalid coupon code'),
                             ),
                           )

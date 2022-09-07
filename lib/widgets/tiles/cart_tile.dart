@@ -52,7 +52,7 @@ class CartTile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: size.width / 2.3,
+                              width: size.width / 2.35,
                               child: EcomText(
                                 product.title,
                                 size: 15,

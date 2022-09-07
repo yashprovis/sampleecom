@@ -30,7 +30,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   init() async {
     UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
-    print(userProvider.getUser.favourites);
+
     ProductService()
         .fetchProductsFromId(userProvider.getUser.favourites)
         .then((value) => setState(() {
@@ -75,7 +75,8 @@ class _WishlistScreenState extends State<WishlistScreen> {
                                                 Navigator.of(context).pushNamed(
                                                     SearchScreen.routeName);
                                               },
-                                              child: Icon(CupertinoIcons.search,
+                                              child: const Icon(
+                                                  CupertinoIcons.search,
                                                   size: 32)),
                                           const SizedBox(width: 14),
                                           const CartHeaderButton()
@@ -87,7 +88,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                             GridView.builder(
                               physics: const ClampingScrollPhysics(),
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                       mainAxisExtent: 294,
                                       crossAxisCount: 2,
                                       mainAxisSpacing: 4,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../provider/user_provider.dart';
 import '../../services/user_service.dart';
 import '../ecom_button.dart';
 import '../ecom_text.dart';
@@ -34,7 +32,6 @@ class _ChangePasswordSheetState extends State<ChangePasswordSheet> {
   FocusNode newPassNode = FocusNode();
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
       child: AnimatedContainer(
@@ -55,7 +52,7 @@ class _ChangePasswordSheetState extends State<ChangePasswordSheet> {
                 children: [
                   const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: const EcomText(
+                    child: EcomText(
                       "Change Password",
                       size: 18,
                       weight: FontWeight.w500,
@@ -103,12 +100,10 @@ class _ChangePasswordSheetState extends State<ChangePasswordSheet> {
                       setState(() {
                         isLoading = true;
                       });
-                      try {
-                        resultString = await UserService().changePassword(
-                            currentPassword: oldPassController.text.trim(),
-                            newPassword: newPassController.text.trim(),
-                            context: context);
-                      } catch (e) {}
+                      resultString = await UserService().changePassword(
+                          currentPassword: oldPassController.text.trim(),
+                          newPassword: newPassController.text.trim(),
+                          context: context);
                       setState(() {
                         isLoading = false;
                       });

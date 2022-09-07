@@ -59,14 +59,15 @@ void sizeSheet(BuildContext context, Product product) {
                                     right: 16, top: 8, bottom: 8),
                                 width: 54,
                                 alignment: Alignment.center,
-                                child: EcomText(product.size[index].toString()),
                                 decoration: BoxDecoration(
                                   border: currentSize == product.size[index]
                                       ? Border.all(width: 2.5)
                                       : null,
                                   color: Colors.grey[200],
                                   borderRadius: BorderRadius.circular(50),
-                                )),
+                                ),
+                                child:
+                                    EcomText(product.size[index].toString())),
                           );
                         },
                       ),

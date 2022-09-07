@@ -7,6 +7,7 @@ import 'package:sampleecom/screens/search.dart';
 import 'package:sampleecom/widgets/ecom_no_products.dart';
 import 'package:sampleecom/widgets/utils/cart_heaer_button.dart';
 
+import '../provider/tabs_provider.dart';
 import '../provider/user_provider.dart';
 import '../services/product_service.dart';
 import '../widgets/ecom_loader.dart';
@@ -103,7 +104,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                       child: const Icon(CupertinoIcons.search,
                                           size: 28)),
                                   const SizedBox(width: 14),
-                                  const CartHeaderButton()
+                                  CartHeaderButton(
+                                    func: () {
+                                      Navigator.of(context).pop();
+                                      context
+                                          .read<TabsProvider>()
+                                          .changeIndex(3);
+                                    },
+                                  )
                                 ],
                               )
                             ],

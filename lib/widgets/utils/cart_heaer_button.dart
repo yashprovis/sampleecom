@@ -30,7 +30,7 @@ class CartHeaderButton extends StatelessWidget {
             child: Icon(CupertinoIcons.cart, size: size ?? 32, color: color),
           ),
           userProvider.getUser.cart == null
-              ? SizedBox()
+              ? const SizedBox()
               : Positioned(
                   right: 0,
                   child: CircleAvatar(

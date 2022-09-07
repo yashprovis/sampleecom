@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-const String baseUrl = "http://192.168.2.103:5000/api";
-const String uploadUrl = "http://192.168.2.103:5000/uploads";
+const String baseUrl = "http://192.168.100.43:5000/api";
+const String uploadUrl = "http://192.168.100.43:5000/uploads";
+
+String notificationUrl = '';
 
 const Map<String, String> headerApiMap = {
   "Content-Type": "application/json; charset=utf-8",

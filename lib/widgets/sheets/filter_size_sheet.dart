@@ -49,7 +49,7 @@ class _FilterSizeSheetState extends State<FilterSizeSheet> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: SizedBox(
                       width: 40,
                       child: userProvider.filters.isEmpty
@@ -65,7 +65,7 @@ class _FilterSizeSheetState extends State<FilterSizeSheet> {
                                 });
                                 Navigator.of(context).pop();
                               },
-                              child: EcomText(
+                              child: const EcomText(
                                 "Clear",
                                 size: 14,
                                 weight: FontWeight.w500,
@@ -140,7 +140,6 @@ class _FilterSizeSheetState extends State<FilterSizeSheet> {
                                       right: 10, top: 8, bottom: 8),
                                   width: 49,
                                   alignment: Alignment.center,
-                                  child: EcomText(baseSizes[index].toString()),
                                   decoration: BoxDecoration(
                                     border:
                                         filterSizes.contains(baseSizes[index])
@@ -148,7 +147,8 @@ class _FilterSizeSheetState extends State<FilterSizeSheet> {
                                             : null,
                                     color: Colors.grey[200],
                                     borderRadius: BorderRadius.circular(50),
-                                  )),
+                                  ),
+                                  child: EcomText(baseSizes[index].toString())),
                             );
                           },
                         ),

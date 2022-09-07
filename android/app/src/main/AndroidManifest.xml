@@ -2,7 +2,7 @@
     package="com.example.sampleecom">
      <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="sampleecom"
+        android:label="Provis Store"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

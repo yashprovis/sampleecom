@@ -26,7 +26,7 @@ class BannerTile extends StatelessWidget {
                   .pushNamed(ProductListScreen.routeName, arguments: {
                 "categories": banner.category,
                 "title":
-                    "${banner.category[0].toString().capitalize()} Collection sofjeo eotek ",
+                    "${banner.category[0].toString().capitalize()} Collection",
               });
             },
             child: const CircleAvatar(

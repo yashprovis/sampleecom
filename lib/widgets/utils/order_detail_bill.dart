@@ -13,27 +13,34 @@ class OrderDetailBill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(bottom: 30, left: 15, right: 20),
+        padding: const EdgeInsets.only(bottom: 20, left: 15, right: 20),
         child: Card(
           elevation: 2,
           child: ExpansionTile(
-            title: EcomText("Order Details"),
+            initiallyExpanded: true,
+            title: const EcomText("Order Details"),
             iconColor: Colors.black,
-            childrenPadding: EdgeInsets.only(bottom: 16, right: 16, left: 16),
+            childrenPadding:
+                const EdgeInsets.only(bottom: 16, right: 16, left: 16),
             children: [
               CartOrderItem(
+                  isOrder: true,
                   title: "Bag Total",
                   value: " ₹${formatNumber(order.subtotalAmount)}.00"),
               CartOrderItem(
+                  isOrder: true,
                   title: "Bag Savings",
                   value: "- ₹${formatNumber(order.savingsAmount)}.00"),
               order.couponAmount == 0
                   ? const SizedBox()
                   : CartOrderItem(
+                      isOrder: true,
                       title: "Coupon Savings",
                       value: "- ₹${formatNumber(order.couponAmount)}.00"),
-              const CartOrderItem(title: "Delivery", value: " Free"),
+              const CartOrderItem(
+                  isOrder: true, title: "Delivery", value: " Free"),
               CartOrderItem(
+                  isOrder: true,
                   title: "Total Amount",
                   value: " ₹${formatNumber(order.totalAmount)}.00")
             ],

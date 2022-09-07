@@ -49,27 +49,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Hero(
                               tag: "logo-shift",
-                              child: Image.asset("assets/images/logo.png")),
-                          const SizedBox(height: 10),
+                              child: Image.asset("assets/images/logo.png",
+                                  width: double.infinity, height: 240)),
+                          const SizedBox(height: 5),
                           const EcomText(
                             "SIGN IN",
                             color: Colors.white,
-                            size: 20,
+                            size: 24,
                             weight: FontWeight.w300,
                           )
                         ],
                       )),
-                  Positioned(
-                      right: 20,
-                      top: 20,
-                      child: GestureDetector(
-                          onTap: () => Navigator.of(context)
-                              .pushReplacementNamed(TabsScreen.routeName),
-                          child: const EcomText(
-                            "SKIP",
-                            size: 14,
-                            color: Colors.white,
-                          )))
+                  // Positioned(
+                  //     right: 20,
+                  //     top: 20,
+                  //     child: GestureDetector(
+                  //         onTap: () => Navigator.of(context)
+                  //             .pushReplacementNamed(TabsScreen.routeName),
+                  //         child: const EcomText(
+                  //           "SKIP",
+                  //           size: 14,
+                  //           color: Colors.white,
+                  //         )))
                 ],
               ),
             ),

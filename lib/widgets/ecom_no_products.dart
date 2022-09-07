@@ -17,7 +17,7 @@ class EcomNoProducts extends StatelessWidget {
     return Container(
       height: height,
       width: width ?? 300,
-      margin: margin ?? EdgeInsets.only(top: 60),
+      margin: margin ?? const EdgeInsets.only(top: 60),
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleecom/screens/home.dart';
 import 'package:sampleecom/screens/login.dart';
 import 'package:sampleecom/screens/tabs.dart';
 

@@ -6,14 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sampleecom/helpers/methods.dart';
 import 'package:sampleecom/services/user_service.dart';
-import 'package:sampleecom/widgets/ecom_button.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
 
-import '../../models/cart_model.dart';
-import '../../models/product_model.dart';
+import '../../constants.dart';
 import '../../provider/user_provider.dart';
 
-void imagePickerSheet(BuildContext context) {
+Future imagePickerSheet(BuildContext context) async {
   showModalBottomSheet(
       context: context,
       builder: (builder) {
@@ -45,7 +43,7 @@ void imagePickerSheet(BuildContext context) {
                   const SizedBox(height: 14),
                   Row(
                     children: [
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Column(
                         children: [
                           GestureDetector(
@@ -57,8 +55,15 @@ void imagePickerSheet(BuildContext context) {
                                     .updateUserProfilePicture(
                                         context: context, image: imageFile)
                                     .whenComplete(() {
-                                  userProvider.refreshUser().whenComplete(
-                                      () => Navigator.of(context).pop());
+                                  userProvider
+                                      .updateUser(
+                                          name: null,
+                                          phone: null,
+                                          image:
+                                              "$uploadUrl/user/user--${userProvider.getUser.uid}",
+                                          context: context)
+                                      .whenComplete(
+                                          () => Navigator.of(context).pop());
                                 });
                               },
                               child: Container(
@@ -67,13 +72,13 @@ void imagePickerSheet(BuildContext context) {
                                   width: 60,
                                   height: 60,
                                   alignment: Alignment.center,
-                                  child: Icon(CupertinoIcons.camera),
                                   decoration: BoxDecoration(
                                     border: Border.all(),
                                     color: Colors.grey[100],
                                     borderRadius: BorderRadius.circular(50),
-                                  ))),
-                          Padding(
+                                  ),
+                                  child: const Icon(CupertinoIcons.camera))),
+                          const Padding(
                               padding: EdgeInsets.only(top: 4),
                               child: EcomText(
                                 "Camera",
@@ -81,7 +86,7 @@ void imagePickerSheet(BuildContext context) {
                               ))
                         ],
                       ),
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       Column(
                         children: [
                           GestureDetector(
@@ -93,8 +98,15 @@ void imagePickerSheet(BuildContext context) {
                                   .updateUserProfilePicture(
                                       context: context, image: imageFile)
                                   .whenComplete(() {
-                                userProvider.refreshUser().whenComplete(
-                                    () => Navigator.of(context).pop());
+                                userProvider
+                                    .updateUser(
+                                        name: null,
+                                        phone: null,
+                                        image:
+                                            "$uploadUrl/user/user--${userProvider.getUser.uid}",
+                                        context: context)
+                                    .whenComplete(
+                                        () => Navigator.of(context).pop());
                               });
                             },
                             child: Container(
@@ -103,14 +115,15 @@ void imagePickerSheet(BuildContext context) {
                                 width: 60,
                                 height: 60,
                                 alignment: Alignment.center,
-                                child: Icon(CupertinoIcons.photo_on_rectangle),
                                 decoration: BoxDecoration(
                                   border: Border.all(),
                                   color: Colors.grey[100],
                                   borderRadius: BorderRadius.circular(50),
-                                )),
+                                ),
+                                child: const Icon(
+                                    CupertinoIcons.photo_on_rectangle)),
                           ),
-                          Padding(
+                          const Padding(
                               padding: EdgeInsets.only(top: 4),
                               child: EcomText(
                                 "Gallery",
@@ -118,9 +131,9 @@ void imagePickerSheet(BuildContext context) {
                               ))
                         ],
                       ),
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       userProvider.getUser.image == ""
-                          ? SizedBox()
+                          ? const SizedBox()
                           : Column(
                               children: [
                                 GestureDetector(
@@ -129,8 +142,8 @@ void imagePickerSheet(BuildContext context) {
                                         .updateUserProfile(
                                             context: context, image: "")
                                         .whenComplete(() {
-                                      userProvider.refreshUser();
-                                      Navigator.of(context).pop();
+                                      userProvider.refreshUser().whenComplete(
+                                          () => Navigator.of(context).pop());
                                     });
                                   },
                                   child: Container(
@@ -139,17 +152,17 @@ void imagePickerSheet(BuildContext context) {
                                       width: 60,
                                       height: 60,
                                       alignment: Alignment.center,
-                                      child: Icon(
-                                        CupertinoIcons.delete,
-                                        color: Colors.white,
-                                      ),
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.white),
                                         color: Colors.red,
                                         borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: const Icon(
+                                        CupertinoIcons.delete,
+                                        color: Colors.white,
                                       )),
                                 ),
-                                Padding(
+                                const Padding(
                                     padding: EdgeInsets.only(top: 4),
                                     child: EcomText(
                                       "Remove",

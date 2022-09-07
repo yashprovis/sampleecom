@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sampleecom/models/category_model.dart';
+import 'package:sampleecom/screens/product_list.dart';
 import 'package:sampleecom/screens/search.dart';
 
 import 'package:sampleecom/widgets/tiles/banner_tile.dart';
@@ -9,6 +11,7 @@ import 'package:sampleecom/widgets/utils/cart_heaer_button.dart';
 
 import '../models/banner_model.dart';
 import '../services/banner_service.dart';
+import '../services/category_service.dart';
 import '../widgets/ecom_loader.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,11 +24,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   List<BannerModel> banners = [];
+  List<SubCategory> subcategory = [];
   @override
   void initState() {
-    BannerService().fetchBanner().then((value) => setState(() {
+    BannerService().fetchBanner().then((value) {
+      if (mounted) {
+        setState(() {
           banners = value;
-        }));
+        });
+      }
+    });
+    CategoryService().fetchCategory().then((value) {
+      if (mounted) {
+        setState(() {
+          for (var subcat in value) {
+            subcategory.addAll(subcat.subcategory);
+            subcategory.shuffle();
+          }
+        });
+      }
+    });
     super.initState();
   }
 
@@ -38,18 +56,21 @@ class _HomeScreenState extends State<HomeScreen> {
           child: banners.isEmpty
               ? const Center(child: EcomLoader())
               : ListView(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
                   children: [
                     SizedBox(
                         width: double.infinity,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                                height: 60,
-                                width: 60,
-                                child: Image.asset(
-                                    'assets/images/transparent_logo.jpg')),
+                            Transform.scale(
+                              scale: 1.4,
+                              child: SizedBox(
+                                  height: 60,
+                                  width: 60,
+                                  child: Image.asset(
+                                      'assets/images/transparent_logo.png')),
+                            ),
                             Row(
                               children: [
                                 GestureDetector(
@@ -66,11 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         )),
                     Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 10),
+                        padding: const EdgeInsets.only(top: 24, left: 10),
                         child: EcomText(
                           banners[currentIndex].title,
                           color: Colors.black,
-                          size: 32,
+                          size: 30,
                           weight: FontWeight.w300,
                         )),
                     SizedBox(
@@ -95,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height - 320,
+                      height: 400,
                       child: PageView.builder(
                         //  physics: const NeverScrollableScrollPhysics(),
                         // padding: const EdgeInsets.only(bottom: 20),
@@ -113,100 +134,69 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
+                    Transform.scale(
+                      scale: 1.15,
+                      child: Container(
+                          color: Colors.black,
+                          margin: const EdgeInsets.only(top: 30),
+                          padding: const EdgeInsets.all(10),
+                          alignment: Alignment.center,
+                          child: const EcomText(
+                            "Browse Categories",
+                            color: Colors.white,
+                            size: 18,
+                            weight: FontWeight.w400,
+                          )),
+                    ),
+                    GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3, mainAxisExtent: 140),
+                      padding: const EdgeInsets.only(bottom: 20, top: 30),
+                      shrinkWrap: true,
+                      itemCount:
+                          subcategory.length > 9 ? 9 : subcategory.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                ProductListScreen.routeName,
+                                arguments: {
+                                  "categories": [subcategory[index].slug],
+                                  "title": subcategory[index].name,
+                                });
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(width: .5)),
+                                margin: const EdgeInsets.only(bottom: 8),
+                                height: 100,
+                                width: MediaQuery.of(context).size.width / 4,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(
+                                    subcategory[index].image,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              EcomText(
+                                subcategory[index].name,
+                                color: Colors.black,
+                                size: 16,
+                                weight: FontWeight.w400,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
         ));
   }
 }
-
-// class PageViewWidget extends StatefulWidget {
-//   @override
-//   _PageViewWidgetState createState() => _PageViewWidgetState();
-// }
-
-// class _PageViewWidgetState extends State<PageViewWidget> {
-//   List _list = [];
-
-//   PageController? pageController;
-
-//   double viewportFraction = 0.8;
-
-//   double? pageOffset = 0;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     pageController =
-//         PageController(initialPage: 0, viewportFraction: viewportFraction)
-//           ..addListener(() {
-//             setState(() {
-//               pageOffset = pageController!.page;
-//             });
-//           });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return PageView.builder(
-//       controller: pageController,
-//       itemBuilder: (context, index) {
-//         double scale = max(viewportFraction,
-//             (1 - (pageOffset! - index).abs()) + viewportFraction);
-
-//         double angle = (pageOffset! - index).abs();
-
-//         if (angle > 0.5) {
-//           angle = 1 - angle;
-//         }
-//         return Container(
-//           padding: EdgeInsets.only(
-//             right: 10,
-//             left: 20,
-//             top: 100 - scale * 25,
-//             bottom: 50,
-//           ),
-//           child: Transform(
-//             transform: Matrix4.identity()
-//               ..setEntry(
-//                 3,
-//                 2,
-//                 0.001,
-//               )
-//               ..rotateY(angle),
-//             alignment: Alignment.center,
-//             child: Stack(
-//               children: <Widget>[
-//                 Image.asset(
-//                   _list[index].url,
-//                   width: MediaQuery.of(context).size.width,
-//                   fit: BoxFit.none,
-//                   alignment: Alignment((pageOffset! - index).abs() * 0.5, 0),
-//                 ),
-//                 Positioned(
-//                   bottom: 60,
-//                   left: 20,
-//                   child: AnimatedOpacity(
-//                     opacity: angle == 0 ? 1 : 0,
-//                     duration: Duration(
-//                       milliseconds: 200,
-//                     ),
-//                     child: Text(
-//                       _list[index].name,
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                         fontSize: 25,
-//                         fontWeight: FontWeight.bold,
-//                         letterSpacing: 1.2,
-//                       ),
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//       itemCount: _list.length,
-//     );
-//   }
-// }

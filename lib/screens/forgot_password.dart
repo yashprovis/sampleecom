@@ -41,12 +41,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         children: [
                           Hero(
                               tag: "logo-shift",
-                              child: Image.asset("assets/images/logo.png")),
-                          const SizedBox(height: 10),
+                              child: Image.asset("assets/images/logo.png",
+                                  width: double.infinity, height: 240)),
+                          const SizedBox(height: 5),
                           const EcomText(
                             "FORGOT PASSWORD",
                             color: Colors.white,
-                            size: 20,
+                            size: 24,
                             weight: FontWeight.w300,
                           )
                         ],

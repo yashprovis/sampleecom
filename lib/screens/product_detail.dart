@@ -10,6 +10,7 @@ import 'package:sampleecom/widgets/ecom_text.dart';
 import 'package:sampleecom/widgets/sheets/size_sheet.dart';
 import 'package:sampleecom/widgets/utils/cart_heaer_button.dart';
 
+import '../provider/tabs_provider.dart';
 import '../widgets/ecom_loader.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -104,10 +105,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                             color: Colors.white,
                                             size: 26))),
                                 const SizedBox(width: 14),
-                                const CircleAvatar(
+                                CircleAvatar(
                                     backgroundColor: Colors.black,
                                     radius: 22,
                                     child: CartHeaderButton(
+                                      func: () {
+                                        Navigator.of(context).pop();
+                                        if (Navigator.of(context).canPop()) {
+                                          Navigator.of(context).pop();
+                                        }
+                                        context
+                                            .read<TabsProvider>()
+                                            .changeIndex(3);
+                                      },
                                       size: 24,
                                       color: Colors.white,
                                     ))
