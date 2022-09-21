@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sampleecom/constants.dart';
@@ -153,8 +154,8 @@ class WishlistTile extends StatelessWidget {
                       radius: 16,
                       child: Icon(
                           userProvider.getUser.favourites.contains(product.id)
-                              ? Icons.favorite
-                              : Icons.favorite_border,
+                              ? CupertinoIcons.heart_fill
+                              : CupertinoIcons.heart,
                           size: 20,
                           color: Colors.black)),
                 ),

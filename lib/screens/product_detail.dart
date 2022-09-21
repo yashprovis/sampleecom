@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -105,8 +106,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       child: Icon(
                                           userProvider.getUser.favourites
                                                   .contains(product!.id)
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
+                                              ? CupertinoIcons.heart_fill
+                                              : CupertinoIcons.heart,
                                           color: Colors.white,
                                           size: 26))),
                               const SizedBox(width: 14),

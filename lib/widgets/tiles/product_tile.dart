@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -75,8 +76,8 @@ class ProductTile extends StatelessWidget {
                       radius: 16,
                       child: Icon(
                           userProvider.getUser.favourites.contains(product.id)
-                              ? Icons.favorite
-                              : Icons.favorite_border,
+                              ? CupertinoIcons.heart_fill
+                              : CupertinoIcons.heart,
                           size: 20,
                           color: Colors.black)),
                 ),

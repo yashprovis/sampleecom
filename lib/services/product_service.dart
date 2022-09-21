@@ -67,6 +67,17 @@ class ProductService {
     return products;
   }
 
+  Future<List<Product>> fetchRandomProducts() async {
+    List<Product> products = [];
+    http.Response response = await http.get(
+        headers: headerApiMap, Uri.parse("$baseUrl/randomProducts"));
+    List data = jsonDecode(response.body)['data'];
+    for (var element in data) {
+      products.add(Product.fromJson(element));
+    }
+    return products;
+  }
+
   Future rateProduct({required Map rating}) async {
     http.Response response = await http.post(
         headers: headerApiMap,

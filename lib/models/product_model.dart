@@ -10,6 +10,7 @@ class Product {
   List category;
   List imageList;
   List ratings;
+  dynamic ratingAvg;
 
   Product(
       {required this.category,
@@ -22,6 +23,7 @@ class Product {
       required this.title,
       required this.image,
       required this.ratings,
+      this.ratingAvg,
       required this.imageList});
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -36,5 +38,6 @@ class Product {
         size: json["size"],
         stock: json["stock"],
         ratings: json["ratings"],
+        ratingAvg: json["ratingAvg"],
       );
 }

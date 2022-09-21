@@ -5,14 +5,16 @@ import 'package:sampleecom/widgets/ecom_text.dart';
 
 import '../../models/cart_model.dart';
 import '../../models/product_model.dart';
+import '../../provider/tabs_provider.dart';
 import '../../provider/user_provider.dart';
 
-void sizeSheet(BuildContext context, Product product) {
+void sizeSheet(BuildContext context, Product product, [bool? changeTab]) {
   showModalBottomSheet(
       context: context,
       builder: (builder) {
         String? currentSize;
         UserProvider userProvider = Provider.of<UserProvider>(context);
+        TabsProvider tabsProvider = Provider.of<TabsProvider>(context);
         return StatefulBuilder(builder: (context, ss) {
           return Container(
               padding: const EdgeInsets.all(16),
@@ -86,6 +88,9 @@ void sizeSheet(BuildContext context, Product product) {
                                     productId: product.id,
                                     qty: 1,
                                     size: currentSize!));
+                          }
+                          if (changeTab != null) {
+                            tabsProvider.changeIndex(3);
                           }
                           Navigator.of(context).pop();
                         },

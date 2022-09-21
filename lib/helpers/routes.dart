@@ -7,6 +7,7 @@ import 'package:sampleecom/screens/order_placed.dart';
 
 import 'package:sampleecom/screens/register.dart';
 import 'package:sampleecom/screens/tabs.dart';
+import 'package:sampleecom/screens/wishlist.dart';
 
 import '../screens/address.dart';
 import '../screens/checkout.dart';
@@ -50,6 +51,10 @@ class RouteGenerator {
       case ForgotPasswordScreen.routeName:
         return MaterialPageRoute(
           builder: (context) => const ForgotPasswordScreen(),
+        );
+      case WishlistScreen.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const WishlistScreen(),
         );
       case CheckoutScreen.routeName:
         return MaterialPageRoute(

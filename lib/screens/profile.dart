@@ -10,12 +10,18 @@ import 'package:sampleecom/screens/address.dart';
 import 'package:sampleecom/screens/edit_profile.dart';
 import 'package:sampleecom/screens/login.dart';
 import 'package:sampleecom/screens/orders.dart';
+import 'package:sampleecom/screens/wishlist.dart';
 import 'package:sampleecom/widgets/ecom_text.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   static const List profileItems = [
+    {
+      "name": "Wishlist",
+      "route": WishlistScreen.routeName,
+      "icon": CupertinoIcons.heart
+    },
     {
       "name": "Orders",
       "route": OrdersScreen.routeName,

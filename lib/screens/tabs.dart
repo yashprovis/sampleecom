@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sampleecom/provider/order_provider.dart';
 import 'package:sampleecom/provider/tabs_provider.dart';
+import 'package:sampleecom/screens/random_product.dart';
 import '../provider/user_provider.dart';
 import '../services/notification_service.dart';
 import 'cart.dart';
@@ -24,7 +26,7 @@ class _TabsScreenState extends State<TabsScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const CategoryScreen(),
-    const WishlistScreen(),
+    const RandomProducts(),
     const CartScreen(),
     const ProfileScreen()
   ];
@@ -62,15 +64,15 @@ class _TabsScreenState extends State<TabsScreen> {
             unselectedItemColor: Colors.grey,
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined), label: ""),
+                  icon: Icon(CupertinoIcons.home), label: ""),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.storefront_sharp), label: ""),
+                  icon: Icon(CupertinoIcons.square_grid_2x2), label: ""),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite_border), label: ""),
+                  icon: Icon(CupertinoIcons.wand_stars), label: ""),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag_outlined), label: ""),
+                  icon: Icon(CupertinoIcons.cart), label: ""),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline), label: ""),
+                  icon: Icon(CupertinoIcons.person), label: ""),
             ]));
   }
 }

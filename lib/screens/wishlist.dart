@@ -13,6 +13,7 @@ import '../widgets/ecom_loader.dart';
 import '../widgets/tiles/wishlist_tile.dart';
 
 class WishlistScreen extends StatefulWidget {
+  static const routeName = "/wishlist";
   const WishlistScreen({Key? key}) : super(key: key);
 
   @override
@@ -64,9 +65,23 @@ class _WishlistScreenState extends State<WishlistScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const EcomText(
-                                        "Wishlist",
-                                        size: 20,
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 15),
+                                        child: Row(
+                                          children: [
+                                            GestureDetector(
+                                                onTap: () =>
+                                                    Navigator.of(context).pop(),
+                                                child: const Icon(Icons
+                                                    .arrow_back_ios_new_rounded)),
+                                            const SizedBox(width: 12),
+                                            const EcomText(
+                                              "Wishlist",
+                                              size: 20,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       Row(
                                         children: [
@@ -77,9 +92,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
                                               },
                                               child: const Icon(
                                                   CupertinoIcons.search,
-                                                  size: 32)),
+                                                  size: 26)),
                                           const SizedBox(width: 14),
-                                          const CartHeaderButton()
+                                          const CartHeaderButton(
+                                            size: 26,
+                                          )
                                         ],
                                       )
                                     ],
