@@ -24,7 +24,7 @@ class AddressTile extends StatelessWidget {
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     return Card(
-        elevation: leftMargin != 0 ? 4 : 1,
+        elevation: leftMargin != 0 ? 4 : 0,
         margin: EdgeInsets.only(bottom: 10, left: leftMargin ?? 6, right: 6),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -33,17 +33,17 @@ class AddressTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (address.id != null &&
-                      (address.id == "billing" || address.id == "delivery"))
-                    Row(
-                      children: [
+                  Row(
+                    children: [
+                      if (address.id != null &&
+                          (address.id == "billing" || address.id == "delivery"))
                         EcomText(
                           "${address.id.toString().capitalize()} - ",
                           weight: FontWeight.w500,
                         ),
-                        EcomText(address.name, size: size),
-                      ],
-                    ),
+                      EcomText(address.name, size: size),
+                    ],
+                  ),
                   if (removable == null)
                     GestureDetector(
                       onTap: () {

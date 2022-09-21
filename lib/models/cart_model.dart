@@ -1,7 +1,7 @@
 class Cart {
   final String productId;
   final num qty;
-  final num size;
+  final String size;
 
   const Cart({required this.productId, required this.qty, required this.size});
 

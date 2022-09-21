@@ -84,7 +84,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   const EdgeInsets.only(bottom: 40, top: 10),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                  color: Colors.black,
+                                  color: Color(0xFF080808),
                                   borderRadius: BorderRadius.circular(60),
                                   image: userProvider.getUser.image == ""
                                       ? null
@@ -126,7 +126,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             node: emailNode,
                             type: TextInputType.emailAddress,
                           ),
-                          const SizedBox(height: 80),
+                          const SizedBox(height: 70),
                           Card(
                             elevation: 4,
                             child: EcomButton(

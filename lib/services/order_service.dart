@@ -13,7 +13,7 @@ class OrderService {
         headers: headerApiMap,
         body: jsonEncode(order.toJson()),
         Uri.parse("$baseUrl/order"));
-
+    print(response.body);
     return Order.fromSnap(jsonDecode(response.body)['data']);
   }
 
@@ -28,6 +28,7 @@ class OrderService {
     List<Order> orderList = [];
     http.Response response = await http.get(
         headers: headerApiMap, Uri.parse("$baseUrl/userOrders/$userId"));
+    print(response.body);
     List data = jsonDecode(response.body)['data'];
 
     for (var element in data) {

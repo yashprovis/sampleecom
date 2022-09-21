@@ -73,7 +73,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             padding: const EdgeInsets.only(top: 60),
             child: products == null
                 ? const Center(child: EcomLoader())
-                : Column(children: [
+                : ListView(padding: EdgeInsets.zero, children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 20),
                       child: SizedBox(
@@ -135,7 +135,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                     padding: const EdgeInsets.only(
                                         left: 10, right: 10),
                                     decoration: BoxDecoration(
-                                        color: Colors.black,
+                                        color: Color(0xFF080808),
                                         border: Border.all(),
                                         borderRadius: BorderRadius.circular(5)),
                                     child: Row(
@@ -220,7 +220,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                   EcomText(
                                     'Filter ',
                                     size: 14,
-                                    color: Colors.black,
+                                    color: Color(0xFF080808),
                                   ),
                                   Icon(CupertinoIcons.slider_horizontal_3)
                                 ],

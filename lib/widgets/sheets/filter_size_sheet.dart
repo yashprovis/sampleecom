@@ -176,7 +176,7 @@ class _FilterSizeSheetState extends State<FilterSizeSheet> {
 
                           //added talk back feature for android
                           labels: labels,
-                          activeColor: Colors.black,
+                          activeColor: Color(0xFF080808),
                           inactiveColor: const Color(0xffD7D8DD),
                           onChanged: (value) {
                             ss(() {
@@ -211,7 +211,7 @@ class _FilterSizeSheetState extends State<FilterSizeSheet> {
                     },
                     color: userProvider.filters.isEmpty
                         ? Colors.grey
-                        : Colors.black,
+                        : Color(0xFF080808),
                     isLoading: false),
               )
             ],

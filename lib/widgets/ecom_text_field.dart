@@ -71,7 +71,7 @@ class _EcomTextFieldState extends State<EcomTextField> {
               FocusScope.of(context).unfocus();
             }
           },
-          cursorColor: Colors.black,
+          cursorColor: Color(0xFF080808),
           cursorWidth: 1.5,
           cursorHeight: 16,
           obscureText: widget.isPassword && isHidden,

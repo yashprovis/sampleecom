@@ -18,7 +18,7 @@ class OrderDetailAddress extends StatelessWidget {
           child: ExpansionTile(
             initiallyExpanded: true,
             title: const EcomText("Order Addresses"),
-            iconColor: Colors.black,
+            iconColor: Color(0xFF080808),
             childrenPadding:
                 const EdgeInsets.only(bottom: 6, right: 4, left: 10),
             children: [

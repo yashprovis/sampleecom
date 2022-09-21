@@ -15,6 +15,7 @@ import '../screens/order_detail.dart';
 import '../screens/orders.dart';
 import '../screens/product_detail.dart';
 import '../screens/product_list.dart';
+import '../screens/product_ratings.dart';
 import '../screens/search.dart';
 
 class RouteGenerator {
@@ -29,6 +30,10 @@ class RouteGenerator {
       case ProductListScreen.routeName:
         return MaterialPageRoute(
           builder: (context) => ProductListScreen(args: args as Map),
+        );
+      case RatingsScreen.routeName:
+        return MaterialPageRoute(
+          builder: (context) => RatingsScreen(args: args as Map),
         );
       case ProductDetailScreen.routeName:
         return MaterialPageRoute(

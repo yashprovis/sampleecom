@@ -26,7 +26,7 @@ class EcomText extends StatelessWidget {
       textAlign: align,
       style: TextStyle(
           letterSpacing: spacing ?? 1.3,
-          color: color ?? Colors.black,
+          color: color ?? Color(0xFF080808),
           fontWeight: weight ?? FontWeight.w400,
           fontSize: size ?? 17),
     );

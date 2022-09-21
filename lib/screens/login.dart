@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           icon: const Icon(
                             Icons.arrow_back_ios_rounded,
                             size: 20,
-                            color: Colors.black,
+                            color: Color(0xFF080808),
                           ),
                           label: const EcomText("Create Account")),
                     )

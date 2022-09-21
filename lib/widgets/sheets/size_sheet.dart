@@ -11,7 +11,7 @@ void sizeSheet(BuildContext context, Product product) {
   showModalBottomSheet(
       context: context,
       builder: (builder) {
-        int? currentSize;
+        String? currentSize;
         UserProvider userProvider = Provider.of<UserProvider>(context);
         return StatefulBuilder(builder: (context, ss) {
           return Container(
@@ -89,7 +89,9 @@ void sizeSheet(BuildContext context, Product product) {
                           }
                           Navigator.of(context).pop();
                         },
-                        color: currentSize == null ? Colors.grey : Colors.black,
+                        color: currentSize == null
+                            ? Colors.grey
+                            : Color(0xFF080808),
                         isLoading: false),
                   )
                 ],

@@ -39,7 +39,7 @@ class _CategoryTileState extends State<CategoryTile> {
                     image: NetworkImage(widget.category.image),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                        Color(0xFF080808).withOpacity(0.8), BlendMode.dstATop),
                   )),
                   // child: Image.network(
                   //   category.image,
@@ -73,7 +73,7 @@ class _CategoryTileState extends State<CategoryTile> {
                           Navigator.of(context).pushNamed(
                               ProductListScreen.routeName,
                               arguments: {
-                                "categories": [widget.category.slug],
+                                "categories": [widget.category.name],
                                 "title": widget.category.name,
                               });
                         },
@@ -121,12 +121,12 @@ class _CategoryTileState extends State<CategoryTile> {
                       onTap: () {
                         Navigator.of(context)
                             .pushNamed(ProductListScreen.routeName, arguments: {
-                          "categories": [widget.category.slug, subcat.slug],
+                          "categories": [widget.category.name, subcat.name],
                           "title": subcat.name,
                         });
                       },
                       child: const Icon(Icons.arrow_forward_ios_rounded,
-                          size: 20, color: Colors.black),
+                          size: 20, color: Color(0xFF080808)),
                     ),
                   ),
                 ),

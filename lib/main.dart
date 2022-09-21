@@ -138,16 +138,16 @@ class MyApp extends StatelessWidget {
   static const MaterialColor primaryBlack = MaterialColor(
     blackPrimaryValue,
     <int, Color>{
-      50: Color(0xFF000000),
-      100: Color(0xFF000000),
-      200: Color(0xFF000000),
-      300: Color(0xFF000000),
-      400: Color(0xFF000000),
+      50: Color(0xFF080808),
+      100: Color(0xFF080808),
+      200: Color(0xFF080808),
+      300: Color(0xFF080808),
+      400: Color(0xFF080808),
       500: Color(blackPrimaryValue),
-      600: Color(0xFF000000),
-      700: Color(0xFF000000),
-      800: Color(0xFF000000),
-      900: Color(0xFF000000),
+      600: Color(0xFF080808),
+      700: Color(0xFF080808),
+      800: Color(0xFF080808),
+      900: Color(0xFF080808),
     },
   );
   @override

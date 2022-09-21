@@ -17,7 +17,7 @@ class HelperMethods {
         size: 14,
         color: Colors.white,
       ),
-      backgroundColor: color ?? Colors.black,
+      backgroundColor: color ?? Color(0xFF080808),
     ));
   }
 

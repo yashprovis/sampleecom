@@ -129,7 +129,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
                             value: isChecked,
-                            fillColor: MaterialStateProperty.all(Colors.black),
+                            fillColor:
+                                MaterialStateProperty.all(Color(0xFF080808)),
                             onChanged: (value) {
                               setState(() {
                                 isChecked = !isChecked;
@@ -140,7 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           //     text: TextSpan(
                           //         text: "Please accept  ",
                           //         style: TextStyle(
-                          //             color: Colors.black,
+                          //             color: Color(0xFF080808),
                           //             fontWeight: FontWeight.w300,
                           //             fontSize: 14),
                           //         children: <TextSpan>[
@@ -161,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           //     ])),
                           const Flexible(
                             child: EcomText(
-                              "Please add me to the PUMA mailing list",
+                              "Please add me to the Provis mailing list",
                               weight: FontWeight.w300,
                               size: 14,
                             ),
@@ -211,7 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         icon: const Icon(
                           Icons.arrow_back_ios_rounded,
                           size: 20,
-                          color: Colors.black,
+                          color: Color(0xFF080808),
                         ),
                         label: const EcomText("SIGN IN"))
                   ],

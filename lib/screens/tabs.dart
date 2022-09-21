@@ -58,7 +58,7 @@ class _TabsScreenState extends State<TabsScreen> {
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            selectedItemColor: Colors.black,
+            selectedItemColor: Color(0xFF080808),
             unselectedItemColor: Colors.grey,
             items: const [
               BottomNavigationBarItem(

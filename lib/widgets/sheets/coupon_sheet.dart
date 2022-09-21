@@ -100,7 +100,7 @@ class _CouponSheetState extends State<CouponSheet> {
                         child: Center(
                           child: CircularProgressIndicator(
                             strokeWidth: 1.5,
-                            color: Colors.black,
+                            color: Color(0xFF080808),
                           ),
                         ),
                       )

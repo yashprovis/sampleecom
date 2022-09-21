@@ -18,7 +18,7 @@ class CheckoutOrderSummary extends StatelessWidget {
         elevation: 2,
         child: ExpansionTile(
           title: const EcomText("Order Summary"),
-          iconColor: Colors.black,
+          iconColor: Color(0xFF080808),
           childrenPadding:
               const EdgeInsets.only(bottom: 16, right: 16, left: 16),
           children: [

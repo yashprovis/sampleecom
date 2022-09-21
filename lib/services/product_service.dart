@@ -8,6 +8,7 @@ import '../constants.dart';
 class ProductService {
   Future<List<Product>> fetchProducts(List categories,
       [bool? priceDesc, Map? filters]) async {
+    print(categories);
     List<Product> products = [];
     Map body = {"categoryList": categories};
     if (priceDesc != null) {
@@ -47,7 +48,7 @@ class ProductService {
     Product product;
     http.Response response = await http.get(
         headers: headerApiMap, Uri.parse("$baseUrl/product/$id"));
-
+    print(response.body);
     product = Product.fromJson(jsonDecode(response.body)['data']);
 
     return product;
@@ -64,5 +65,15 @@ class ProductService {
       products.add(Product.fromJson(element));
     }
     return products;
+  }
+
+  Future rateProduct({required Map rating}) async {
+    http.Response response = await http.post(
+        headers: headerApiMap,
+        body: jsonEncode(rating),
+        Uri.parse("$baseUrl/rateProduct"));
+    if (response.statusCode == 200) {
+      return true;
+    }
   }
 }

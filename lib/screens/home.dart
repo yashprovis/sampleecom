@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.only(top: 24, left: 10),
                         child: EcomText(
                           banners[currentIndex].title,
-                          color: Colors.black,
+                          color: Color(0xFF080808),
                           size: 30,
                           weight: FontWeight.w300,
                         )),
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             margin: const EdgeInsets.only(right: 10),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.black),
+                                color: Color(0xFF080808)),
                             height: 10,
                             width: currentIndex == i ? 60 : 10,
                           );
@@ -118,9 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 400,
                       child: PageView.builder(
-                        //  physics: const NeverScrollableScrollPhysics(),
-                        // padding: const EdgeInsets.only(bottom: 20),
-                        // shrinkWrap: true,
                         onPageChanged: (int i) {
                           setState(() {
                             currentIndex = i;
@@ -137,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Transform.scale(
                       scale: 1.15,
                       child: Container(
-                          color: Colors.black,
+                          color: Color(0xFF080808),
                           margin: const EdgeInsets.only(top: 30),
                           padding: const EdgeInsets.all(10),
                           alignment: Alignment.center,
@@ -163,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.of(context).pushNamed(
                                 ProductListScreen.routeName,
                                 arguments: {
-                                  "categories": [subcategory[index].slug],
+                                  "categories": [subcategory[index].name],
                                   "title": subcategory[index].name,
                                 });
                           },
@@ -186,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               EcomText(
                                 subcategory[index].name,
-                                color: Colors.black,
+                                color: Color(0xFF080808),
                                 size: 16,
                                 weight: FontWeight.w400,
                               ),

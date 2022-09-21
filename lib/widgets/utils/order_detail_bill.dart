@@ -19,7 +19,7 @@ class OrderDetailBill extends StatelessWidget {
           child: ExpansionTile(
             initiallyExpanded: true,
             title: const EcomText("Order Details"),
-            iconColor: Colors.black,
+            iconColor: Color(0xFF080808),
             childrenPadding:
                 const EdgeInsets.only(bottom: 16, right: 16, left: 16),
             children: [

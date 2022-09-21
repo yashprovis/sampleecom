@@ -124,8 +124,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                   value: billingSameAsDelivery,
-                                  fillColor:
-                                      MaterialStateProperty.all(Colors.black),
+                                  fillColor: MaterialStateProperty.all(
+                                      Color(0xFF080808)),
                                   onChanged: (value) {
                                     setState(() {
                                       billingSameAsDelivery =

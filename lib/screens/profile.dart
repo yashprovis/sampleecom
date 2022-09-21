@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                           width: 80,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: Colors.black,
+                              color: Color(0xFF080808),
                               borderRadius: BorderRadius.circular(50),
                               image: userProvider.getUser.image == ""
                                   ? null
